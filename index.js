@@ -32,16 +32,7 @@ function handleCredentialResponse(response) {
         }, 1000)
     }
 }
-
-async function registerSW() {
-    if ('serviceWorker' in navigator) {
-        try {
-            await navigator.serviceWorker.register('./sw.js')
-        } catch (e) {
-            console.log(`SW registration failed`);
-        }
-    }
-
+async function google() {
     try {
         await google.accounts.id.initialize({
             client_id: "923256170354-gjjsb1l72jcinb2hrdr9h6j8432fnm7l.apps.googleusercontent.com",
@@ -60,6 +51,17 @@ async function registerSW() {
         await google.accounts.id.prompt()
     } catch (e) {
         console.log(e)
+    }
+}
+
+async function registerSW() {
+    if ('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('./sw.js')
+            google()
+        } catch (e) {
+            console.log(`SW registration failed`);
+        }
     }
 }
 
