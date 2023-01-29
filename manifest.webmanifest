@@ -1,0 +1,18 @@
+{
+    "short_name": "teste name",
+    "name": "Google login",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#ffffff",
+    "theme-color": "#ffffff",
+    "background_color": "#000000",
+    "background-color": "#000000",
+    "description": "my site description",
+    "icons": [
+        {
+            "src": "images/login.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
