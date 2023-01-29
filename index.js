@@ -41,25 +41,30 @@ async function registerSW() {
             console.log(`SW registration failed`);
         }
     }
+
+    try {
+        await google.accounts.id.initialize({
+            client_id: "923256170354-gjjsb1l72jcinb2hrdr9h6j8432fnm7l.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        await google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            {
+                theme: "outline",
+                size: "large",
+                shape: "pill",
+                context: "use",
+                text: "continue_with"
+            }
+        );
+        await google.accounts.id.prompt()
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 window.onload = function () {
     registerSW()
-    google.accounts.id.initialize({
-        client_id: "923256170354-gjjsb1l72jcinb2hrdr9h6j8432fnm7l.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
-    google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"),
-        {
-            theme: "outline",
-            size: "large",
-            shape: "pill",
-            context: "use",
-            text: "continue_with"
-        }
-    );
-    google.accounts.id.prompt()
 }
 
 
